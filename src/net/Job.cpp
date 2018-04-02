@@ -98,14 +98,11 @@ bool Job::setBlob(const char *blob)
     }
 
     m_size = strlen(blob);
-    if (m_size % 2 != 0) {
+    if (m_size != 280) {
         return false;
     }
 
     m_size /= 2;
-    if (m_size < 76 || m_size >= sizeof(m_blob)) {
-        return false;
-    }
 
     if (!fromHex(blob, (int) m_size * 2, m_blob)) {
         return false;
